@@ -1,24 +1,10 @@
-html
-<!--
-  1. KİŞİLİK — Siyah deri ceket giyen bir fütürist mühendis.
-     Karanlık, keskin, teknolojik ama içinde sıcak bir ışık var.
-     Space Grotesk (display) + Outfit (body). Derin lacivert zemin,
-     elektrik mavisi neon vurgular, sıcak amber aksanlar.
 
-  2. SÜRPRIZ — Hero'daki başlık arkasında yavaşça dönen,
-     dev bir neon halka (conic-gradient + blur) ve stepper'daki
-     pulse-glow animasyonu. Kullanıcı "vay" desin.
-
-  3. RİTİM — Bölümler arasında derin nefes boşlukları (100px+),
-     her bölüm ince bir glassmorphic kart içinde yüzüyor,
-     arka planda subtle radial gradient kaymaları ile derinlik.
--->
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Llull Lab Web App Hub — Hayalindeki Siteyi Yaz, Biz Üretelim</title>
+<title>Llull Lab Web App Hub — Describe Your Dream Site, We Build It</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,7 +18,6 @@ html
   --bg-surface:#111827;
   --text-primary:#e8ecf4;
   --text-secondary:#94a3b8;
-  /* KG: kontrast oranı 4.5:1 altındaydı, #5a6a85 → #7a8ba3 yükseltildi */
   --text-muted:#7a8ba3;
   --neon-blue:#38bdf8;
   --neon-blue-dim:rgba(56,189,248,0.15);
@@ -64,7 +49,6 @@ html
   --transition-smooth:cubic-bezier(0.4,0,0.2,1);
 }
 
-/* KG: light mode tercih eden kullanıcılar için okunabilir fallback */
 @media (prefers-color-scheme:light){
   :root{
     --bg-deep:#f0f2f7;
@@ -125,8 +109,10 @@ a:hover{text-decoration:underline}
 }
 .nav-logo .logo-icon{
   width:32px;height:32px;border-radius:var(--radius-sm);
-  background:linear-gradient(135deg,var(--neon-blue),#818cf8);
-  display:grid;place-items:center;font-size:0.85rem;
+  overflow:hidden;display:grid;place-items:center;
+}
+.nav-logo .logo-icon img{
+  width:100%;height:100%;object-fit:cover;display:block;
 }
 .nav-links{display:flex;gap:var(--space-xl);align-items:center;list-style:none}
 .nav-links a{
@@ -202,7 +188,6 @@ a:hover{text-decoration:underline}
   position:relative;z-index:1;font-weight:300;
 }
 
-/* KG: Hero CTA yeterince baskın değildi → büyük gradient buton yapıldı */
 .hero-cta{
   position:relative;z-index:1;display:inline-flex;align-items:center;gap:var(--space-sm);
   background:linear-gradient(135deg,var(--neon-blue),#818cf8);
@@ -497,13 +482,10 @@ a:hover{text-decoration:underline}
 }
 .feature-card p{font-size:0.88rem;color:var(--text-secondary);line-height:1.65}
 
-/* KG: max-width media query'leri min-width mobile-first yapıya çevrildi */
 /* ─── MOBILE-FIRST RESPONSIVE ─── */
 
-/* Hamburger varsayılan: mobilde göster */
 .hamburger{display:flex}
 
-/* Mobilde nav-links gizli, overlay olarak açılır */
 .nav-links{
   display:none;position:fixed;top:0;left:0;right:0;bottom:0;
   background:rgba(10,14,26,0.97);backdrop-filter:blur(20px);
@@ -565,18 +547,17 @@ a:hover{text-decoration:underline}
 <body>
 
 <!-- NAV -->
-<nav class="nav" role="navigation" aria-label="Ana navigasyon">
+<nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo">
-    <div class="logo-icon" aria-hidden="true">⚡</div>
+    <div class="logo-icon" aria-hidden="true"><img src="logo.jpg" alt="Llull Lab logo"></div>
     <span>Llull Lab Web App Hub</span>
   </div>
-  <!-- KG: aria-hidden mobilde gizli menü için eklendi, JS ile yönetilecek -->
   <ul class="nav-links" id="navLinks" role="list" aria-hidden="true">
-    <li><a href="#features">Özellikler</a></li>
-    <li><a href="#create">Oluştur</a></li>
-    <li><a href="#create" class="nav-cta">Hemen Başla</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#create">Create</a></li>
+    <li><a href="#create" class="nav-cta">Get Started</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menüyü aç" aria-expanded="false">
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -586,62 +567,61 @@ a:hover{text-decoration:underline}
   <div class="hero-orb" aria-hidden="true"></div>
   <div class="hero-badge">
     <span class="hero-badge-dot" aria-hidden="true"></span>
-    Yapay zeka destekli • Çift ajanlı mimari
+    AI-powered • Dual-agent architecture
   </div>
   <h1>
-    Hayalindeki siteyi<br>
-    <span class="gradient-text">yaz, biz üretelim.</span>
+    Describe your dream site,<br>
+    <span class="gradient-text">we build it.</span>
   </h1>
   <p class="hero-desc">
-    Web sitenizi birkaç cümleyle tarif edin. Üretici ajan kodunuzu yazar, kontrol ajanı kalitesini denetler. Saniyeler içinde profesyonel bir site elinizde.
+    Describe your website in a few sentences. The generator agent writes your code, the reviewer agent checks the quality. A professional site in your hands within seconds.
   </p>
-  <!-- KG: hero-arrow → hero-cta olarak büyük baskın buton yapıldı -->
-  <a href="#create" class="hero-cta" aria-label="Oluşturma alanına git">
-    Oluşturmaya başla
+  <a href="#create" class="hero-cta" aria-label="Go to creation area">
+    Start creating
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
   </a>
 </header>
 
 <!-- FEATURES -->
 <section class="features-section fade-in" id="features" aria-labelledby="features-title">
-  <span class="section-label">Neden Llull Lab Web App Hub?</span>
-  <h2 id="features-title">İki ajan, tek sonuç:<br>kusursuz web siteleri.</h2>
+  <span class="section-label">Why Llull Lab Web App Hub?</span>
+  <h2 id="features-title">Two agents, one result:<br>flawless websites.</h2>
   <div class="features-grid">
     <article class="feature-card">
       <div class="feature-icon blue" aria-hidden="true">🧠</div>
-      <h3>Üretici Ajan</h3>
-      <p>Açıklamanızı anlayan yapay zeka, modern ve responsive HTML/CSS/JS kodu üretir. Tasarım ilkelerini bilir, erişilebilirliği gözetir.</p>
+      <h3>Generator Agent</h3>
+      <p>The AI understands your description and produces modern, responsive HTML/CSS/JS code. It knows design principles and ensures accessibility.</p>
     </article>
     <article class="feature-card">
       <div class="feature-icon amber" aria-hidden="true">🔍</div>
-      <h3>Kontrol Ajanı</h3>
-      <p>İkinci bir yapay zeka üretilen kodu inceler: performans, erişilebilirlik, görsel tutarlılık. Detaylı rapor çıkarır.</p>
+      <h3>Reviewer Agent</h3>
+      <p>A second AI reviews the generated code: performance, accessibility, visual consistency. It produces a detailed report.</p>
     </article>
     <article class="feature-card">
       <div class="feature-icon green" aria-hidden="true">⚡</div>
-      <h3> 4-7 Dakika İçinde Sonuç</h3>
-      <p>Dakikalar içinde canlı önizleme, kalite raporu ve indirilebilir HTML dosyası. Kopyala, yapıştır, yayınla.</p>
+      <h3>Results in 4-7 Minutes</h3>
+      <p>Live preview, quality report, and downloadable HTML file within minutes. Copy, paste, publish.</p>
     </article>
   </div>
 </section>
 
 <!-- PROMPT -->
 <section class="prompt-section fade-in" id="create" aria-labelledby="create-title">
-  <span class="section-label">Oluştur</span>
-  <h2 id="create-title">Sitenizi birkaç cümleyle<br>tarif edin.</h2>
+  <span class="section-label">Create</span>
+  <h2 id="create-title">Describe your site<br>in a few sentences.</h2>
   <div class="prompt-card">
-    <label for="promptInput">Ne tür bir web sitesi hayal ediyorsunuz?</label>
+    <label for="promptInput">What kind of website do you envision?</label>
     <textarea
       class="prompt-textarea"
       id="promptInput"
-      placeholder="Örnek: Minimalist bir fotoğraf portföyü. Koyu tema, büyük görseller, yatay kaydırma. Sol tarafta sabit bir navigasyon, sağda tam ekran fotoğraf galerisi..."
+      placeholder="Example: A minimalist photography portfolio. Dark theme, large images, horizontal scrolling. Fixed navigation on the left, full-screen photo gallery on the right..."
       maxlength="10000"
       aria-describedby="charCounter"
     ></textarea>
     <div class="prompt-footer">
       <span class="char-count" id="charCounter" aria-live="polite">0 / 2000</span>
       <button class="btn-generate" id="btnGenerate" type="button">
-        <span class="btn-text">✦ Oluştur</span>
+        <span class="btn-text">✦ Generate</span>
         <span class="spinner" aria-hidden="true"></span>
       </button>
     </div>
@@ -649,7 +629,7 @@ a:hover{text-decoration:underline}
 </section>
 
 <!-- STEPPER -->
-<section class="stepper-section" id="stepperSection" aria-label="İlerleme durumu">
+<section class="stepper-section" id="stepperSection" aria-label="Progress status">
   <div class="stepper" role="list">
     <div class="step" data-step="0" role="listitem">
       <div class="step-indicator">
@@ -657,8 +637,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>İstek Gönderiliyor</h3>
-        <p>Açıklamanız güvenli bir şekilde sunucuya iletiliyor.</p>
+        <h3>Sending Request</h3>
+        <p>Your description is being securely transmitted to the server.</p>
       </div>
     </div>
     <div class="step" data-step="1" role="listitem">
@@ -667,8 +647,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Üretici Ajan Çalışıyor</h3>
-        <p>Yapay zeka açıklamanızı analiz edip kodu yazıyor.</p>
+        <h3>Generator Agent Working</h3>
+        <p>The AI is analyzing your description and writing the code.</p>
       </div>
     </div>
     <div class="step" data-step="2" role="listitem">
@@ -677,8 +657,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Kontrol Ajanı İnceliyor</h3>
-        <p>İkinci ajan kodu kalite, erişilebilirlik ve performans açısından denetliyor.</p>
+        <h3>Reviewer Agent Inspecting</h3>
+        <p>The second agent is reviewing the code for quality, accessibility, and performance.</p>
       </div>
     </div>
     <div class="step" data-step="3" role="listitem">
@@ -687,8 +667,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Sonuç Hazır</h3>
-        <p>Siteniz oluşturuldu! Önizleme ve rapor aşağıda.</p>
+        <h3>Result Ready</h3>
+        <p>Your site has been created! Preview and report are below.</p>
       </div>
     </div>
   </div>
@@ -696,13 +676,13 @@ a:hover{text-decoration:underline}
 
 <!-- RESULTS -->
 <section class="results-section" id="resultsSection" aria-labelledby="results-title">
-  <h2 id="results-title" class="section-label" style="margin-bottom:var(--space-xl)">Sonuçlar</h2>
+  <h2 id="results-title" class="section-label" style="margin-bottom:var(--space-xl)">Results</h2>
   <div class="results-grid">
     <!-- Report -->
     <div class="report-card">
       <div class="report-card-header">
         <div class="report-card-icon" aria-hidden="true">📋</div>
-        <h3>Kalite Kontrol Raporu</h3>
+        <h3>Quality Control Report</h3>
       </div>
       <div class="report-body" id="reportBody">—</div>
     </div>
@@ -713,21 +693,20 @@ a:hover{text-decoration:underline}
           <span class="preview-dot" aria-hidden="true"></span>
           <span class="preview-dot" aria-hidden="true"></span>
           <span class="preview-dot" aria-hidden="true"></span>
-          <span class="preview-toolbar-title">Canlı Önizleme</span>
+          <span class="preview-toolbar-title">Live Preview</span>
         </div>
         <div class="preview-actions">
-          <button class="btn-action" id="btnCopy" type="button" aria-label="Kodu kopyala">
+          <button class="btn-action" id="btnCopy" type="button" aria-label="Copy code">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            Kopyala
+            Copy
           </button>
-          <button class="btn-action" id="btnDownload" type="button" aria-label="HTML olarak indir">
+          <button class="btn-action" id="btnDownload" type="button" aria-label="Download as HTML">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            İndir
+            Download
           </button>
         </div>
       </div>
-      <!-- KG: sandbox'tan allow-same-origin kaldırıldı, güvenlik riski -->
-      <iframe class="preview-iframe" id="previewIframe" title="Oluşturulan sitenin önizlemesi" sandbox="allow-scripts"></iframe>
+      <iframe class="preview-iframe" id="previewIframe" title="Preview of the generated site" sandbox="allow-scripts"></iframe>
     </div>
   </div>
 </section>
@@ -737,7 +716,7 @@ a:hover{text-decoration:underline}
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <p>Llull Lab Web App Hub — Yapay zeka destekli web sitesi üreteci. Llull Lab teknolojileri ile güçlendirilmiştir.</p>
+  <p>© 2026 <a href="https://llulllab.com" target="_blank" rel="noopener">Llull Lab</a></p>
 </footer>
 
 <script>
@@ -760,11 +739,9 @@ a:hover{text-decoration:underline}
   const steps = document.querySelectorAll('.step');
 
   let generatedCode = '';
-  /* KG: blob URL memory leak önleme — önceki URL'yi takip et */
   let currentBlobUrl = null;
 
   // Hamburger
-  /* KG: aria-hidden yönetimi eklendi */
   hamburger.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
     hamburger.classList.toggle('active');
@@ -822,12 +799,12 @@ a:hover{text-decoration:underline}
   btnGenerate.addEventListener('click', async () => {
     const prompt = promptInput.value.trim();
     if (!prompt) {
-      showError('Lütfen sitenizi tarif eden bir açıklama yazın.');
+      showError('Please write a description of your website.');
       promptInput.focus();
       return;
     }
     if (prompt.length < 10) {
-      showError('Açıklamanız çok kısa. Biraz daha detay ekleyin.');
+      showError('Your description is too short. Please add more detail.');
       promptInput.focus();
       return;
     }
@@ -854,7 +831,7 @@ a:hover{text-decoration:underline}
         body: JSON.stringify({ prompt })
       });
 
-      if (!response.ok) throw new Error('Sunucu hatası: ' + response.status);
+      if (!response.ok) throw new Error('Server error: ' + response.status);
 
       const data = await response.json();
 
@@ -868,10 +845,9 @@ a:hover{text-decoration:underline}
 
       // Show results
       generatedCode = data.code || '';
-      reportBody.textContent = data.report || 'Rapor bulunamadı.';
+      reportBody.textContent = data.report || 'No report found.';
 
       if (generatedCode) {
-        /* KG: önceki blob URL'yi revoke et — memory leak önleme */
         if (currentBlobUrl) {
           URL.revokeObjectURL(currentBlobUrl);
         }
@@ -889,7 +865,7 @@ a:hover{text-decoration:underline}
       stepTimers.forEach(clearTimeout);
       resetStepper();
       stepperSection.classList.remove('visible');
-      showError('Bir hata oluştu: ' + err.message);
+      showError('An error occurred: ' + err.message);
     } finally {
       btnGenerate.classList.remove('loading');
       btnGenerate.disabled = false;
@@ -902,10 +878,10 @@ a:hover{text-decoration:underline}
     try {
       await navigator.clipboard.writeText(generatedCode);
       const orig = btnCopy.innerHTML;
-      btnCopy.innerHTML = '<span style="color:var(--green)">✓ Kopyalandı</span>';
+      btnCopy.innerHTML = '<span style="color:var(--green)">✓ Copied</span>';
       setTimeout(() => { btnCopy.innerHTML = orig; }, 2000);
     } catch {
-      showError('Kopyalama başarısız oldu.');
+      showError('Copy failed.');
     }
   });
 
@@ -916,7 +892,7 @@ a:hover{text-decoration:underline}
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'siteforge-output.html';
+    a.download = 'llulllab-output.html';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -931,7 +907,6 @@ a:hover{text-decoration:underline}
     }
   });
 
-  /* KG: Desktop'ta nav-links aria-hidden'ı kaldır (her zaman görünür) */
   function handleNavVisibility() {
     if (window.innerWidth >= 1024) {
       navLinks.removeAttribute('aria-hidden');

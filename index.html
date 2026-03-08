@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -539,6 +538,160 @@ a:hover{text-decoration:underline}
 ::-webkit-scrollbar-thumb{background:rgba(56,189,248,0.2);border-radius:4px}
 ::-webkit-scrollbar-thumb:hover{background:rgba(56,189,248,0.35)}
 
+/* ─── GATE OVERLAY ─── */
+.prompt-card-wrapper{position:relative;min-height:280px}
+.prompt-card-wrapper.locked .prompt-card{
+  filter:blur(6px);pointer-events:none;user-select:none;
+  opacity:0.45;
+}
+.gate-overlay{
+  position:absolute;inset:0;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  padding:var(--space-lg);
+}
+.gate-overlay.hidden{display:none}
+
+.gate-box{
+  background:var(--bg-card);
+  border:1px solid var(--bg-card-border);
+  border-radius:var(--radius-lg);
+  padding:var(--space-xl) var(--space-xl) var(--space-lg);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  box-shadow:var(--shadow-card);
+  width:100%;max-width:440px;
+}
+.gate-tabs{
+  display:flex;gap:0;margin-bottom:var(--space-xl);
+  border-bottom:1px solid rgba(56,189,248,0.1);
+}
+.gate-tab{
+  flex:1;background:none;border:none;
+  padding:var(--space-md) var(--space-sm);
+  font-family:var(--font-display);font-size:0.88rem;font-weight:600;
+  color:var(--text-muted);cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color 200ms var(--transition-smooth),border-color 200ms var(--transition-smooth);
+  min-height:44px;
+}
+.gate-tab:hover{color:var(--text-secondary)}
+.gate-tab.active{color:var(--neon-blue);border-bottom-color:var(--neon-blue)}
+.gate-panel{display:none}
+.gate-panel.active{display:block}
+
+.gate-input{
+  width:100%;
+  background:rgba(10,14,26,0.6);border:1px solid rgba(56,189,248,0.1);
+  border-radius:var(--radius-md);padding:var(--space-md) var(--space-lg);
+  font-family:var(--font-body);font-size:1rem;color:var(--text-primary);
+  transition:border-color 250ms var(--transition-smooth),box-shadow 250ms var(--transition-smooth);
+}
+@media (prefers-color-scheme:light){
+  .gate-input{background:rgba(255,255,255,0.5)}
+}
+.gate-input::placeholder{color:var(--text-muted)}
+.gate-input:focus{
+  outline:none;border-color:var(--neon-blue);
+  box-shadow:0 0 0 3px var(--neon-blue-dim);
+}
+.gate-input.code-input{
+  text-align:center;font-family:var(--font-display);font-size:1.15rem;
+  letter-spacing:0.08em;text-transform:uppercase;
+}
+
+.gate-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--space-sm);
+  width:100%;margin-top:var(--space-lg);
+  background:linear-gradient(135deg,var(--neon-blue),#818cf8);
+  color:#0a0e1a;font-family:var(--font-display);font-weight:700;
+  font-size:0.95rem;border:none;border-radius:var(--radius-md);
+  padding:var(--space-md) var(--space-xl);cursor:pointer;
+  min-height:48px;
+  box-shadow:0 4px 24px rgba(56,189,248,0.3);
+  transition:transform 250ms var(--transition-bounce),box-shadow 250ms var(--transition-smooth),opacity 200ms var(--transition-smooth);
+  position:relative;overflow:hidden;
+}
+.gate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(56,189,248,0.4)}
+.gate-btn:active{transform:translateY(0)}
+.gate-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.gate-btn.secondary{
+  background:var(--neon-blue-dim);color:var(--neon-blue);
+  border:1px solid rgba(56,189,248,0.25);
+  box-shadow:none;
+}
+.gate-btn.secondary:hover{background:rgba(56,189,248,0.25);box-shadow:none}
+
+.gate-msg{
+  margin-top:var(--space-md);padding:var(--space-md);
+  border-radius:var(--radius-sm);font-size:0.85rem;
+  text-align:center;display:none;
+}
+.gate-msg.success{
+  display:block;background:var(--green-dim);color:var(--green);
+  border:1px solid rgba(52,211,153,0.2);
+}
+.gate-msg.error{
+  display:block;background:rgba(248,113,113,0.1);color:var(--red);
+  border:1px solid rgba(248,113,113,0.2);
+}
+
+.gate-hint{
+  font-size:0.78rem;color:var(--text-muted);margin-top:var(--space-md);
+  text-align:center;line-height:1.5;
+}
+
+/* ─── USAGE BADGE ─── */
+.usage-badge{
+  display:inline-flex;align-items:center;gap:var(--space-sm);
+  background:var(--neon-blue-dim);border:1px solid rgba(56,189,248,0.15);
+  border-radius:999px;padding:4px var(--space-md);
+  font-size:0.78rem;font-weight:500;color:var(--neon-blue);
+  white-space:nowrap;
+}
+.usage-badge.hidden{display:none}
+.usage-badge .usage-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;
+}
+.usage-badge.warning{color:var(--amber);background:var(--amber-dim);border-color:rgba(245,158,11,0.15)}
+.usage-badge.warning .usage-dot{background:var(--amber)}
+.usage-badge.depleted{color:var(--red);background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.15)}
+.usage-badge.depleted .usage-dot{background:var(--red)}
+
+/* ─── EXHAUSTED STATE ─── */
+.exhausted-overlay{
+  position:absolute;inset:0;z-index:10;
+  display:flex;align-items:center;justify-content:center;
+  padding:var(--space-lg);
+}
+.exhausted-overlay.hidden{display:none}
+.exhausted-box{
+  background:var(--bg-card);
+  border:1px solid rgba(248,113,113,0.15);
+  border-radius:var(--radius-lg);
+  padding:var(--space-xl);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  box-shadow:var(--shadow-card);
+  width:100%;max-width:400px;text-align:center;
+}
+.exhausted-icon{font-size:2rem;margin-bottom:var(--space-md)}
+.exhausted-box h3{
+  font-family:var(--font-display);font-weight:600;font-size:1.1rem;
+  margin-bottom:var(--space-sm);
+}
+.exhausted-box p{font-size:0.88rem;color:var(--text-secondary);margin-bottom:var(--space-lg);line-height:1.6}
+
+/* gate spinner */
+.gate-btn .gate-spinner{
+  width:18px;height:18px;border:2.5px solid rgba(10,14,26,0.2);
+  border-top-color:#0a0e1a;border-radius:50%;
+  animation:spin 0.7s linear infinite;display:none;
+}
+.gate-btn.secondary .gate-spinner{
+  border-color:rgba(56,189,248,0.2);
+  border-top-color:var(--neon-blue);
+}
+.gate-btn.loading .gate-spinner{display:block}
+.gate-btn.loading .gate-btn-text{display:none}
+
 /* ─── FADE IN ANIMATION ─── */
 .fade-in{opacity:0;transform:translateY(24px);transition:opacity 600ms var(--transition-smooth),transform 600ms var(--transition-smooth)}
 .fade-in.visible{opacity:1;transform:translateY(0)}
@@ -609,22 +762,99 @@ a:hover{text-decoration:underline}
 <section class="prompt-section fade-in" id="create" aria-labelledby="create-title">
   <span class="section-label">Create</span>
   <h2 id="create-title">Describe your site<br>in a few sentences.</h2>
-  <div class="prompt-card">
-    <label for="promptInput">What kind of website do you envision?</label>
-    <textarea
-      class="prompt-textarea"
-      id="promptInput"
-      placeholder="Example: A minimalist photography portfolio. Dark theme, large images, horizontal scrolling. Fixed navigation on the left, full-screen photo gallery on the right..."
-      maxlength="10000"
-      aria-describedby="charCounter"
-    ></textarea>
-    <div class="prompt-footer">
-      <span class="char-count" id="charCounter" aria-live="polite">0 / 2000</span>
-      <button class="btn-generate" id="btnGenerate" type="button">
-        <span class="btn-text">✦ Generate</span>
-        <span class="spinner" aria-hidden="true"></span>
-      </button>
+  <div class="prompt-card-wrapper locked" id="promptWrapper">
+
+    <!-- GATE OVERLAY -->
+    <div class="gate-overlay" id="gateOverlay">
+      <div class="gate-box">
+        <div class="gate-tabs">
+          <button class="gate-tab active" data-panel="code" type="button">I have an invite code</button>
+          <button class="gate-tab" data-panel="request" type="button">Request access</button>
+        </div>
+        <!-- Code Panel -->
+        <div class="gate-panel active" id="panelCode">
+          <input
+            class="gate-input code-input"
+            id="inviteCodeInput"
+            type="text"
+            placeholder="HRZ-XXXX-XXXX"
+            maxlength="14"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Invite code"
+          >
+          <button class="gate-btn" id="btnValidateCode" type="button">
+            <span class="gate-btn-text">Validate Code</span>
+            <span class="gate-spinner" aria-hidden="true"></span>
+          </button>
+          <div class="gate-msg" id="codeFeedback"></div>
+        </div>
+        <!-- Request Panel -->
+        <div class="gate-panel" id="panelRequest">
+          <input
+            class="gate-input"
+            id="requestEmailInput"
+            type="email"
+            placeholder="your@email.com"
+            autocomplete="email"
+            aria-label="Email address"
+          >
+          <button class="gate-btn secondary" id="btnRequestAccess" type="button">
+            <span class="gate-btn-text">Send Request</span>
+            <span class="gate-spinner" aria-hidden="true"></span>
+          </button>
+          <div class="gate-msg" id="requestFeedback"></div>
+          <p class="gate-hint">We'll review your request and send an invite code to your email.</p>
+        </div>
+      </div>
     </div>
+
+    <!-- EXHAUSTED OVERLAY (hidden by default) -->
+    <div class="exhausted-overlay hidden" id="exhaustedOverlay">
+      <div class="exhausted-box">
+        <div class="exhausted-icon" aria-hidden="true">⏳</div>
+        <h3>No generations left</h3>
+        <p>You've used all your available generations. Request a new invite code to continue creating.</p>
+        <input
+          class="gate-input"
+          id="exhaustedEmailInput"
+          type="email"
+          placeholder="your@email.com"
+          autocomplete="email"
+          aria-label="Email address for new access request"
+          style="margin-bottom:0"
+        >
+        <button class="gate-btn secondary" id="btnExhaustedRequest" type="button">
+          <span class="gate-btn-text">Request New Access</span>
+          <span class="gate-spinner" aria-hidden="true"></span>
+        </button>
+        <div class="gate-msg" id="exhaustedFeedback"></div>
+      </div>
+    </div>
+
+    <!-- ORIGINAL PROMPT CARD -->
+    <div class="prompt-card">
+      <label for="promptInput">What kind of website do you envision?</label>
+      <textarea
+        class="prompt-textarea"
+        id="promptInput"
+        placeholder="Example: A minimalist photography portfolio. Dark theme, large images, horizontal scrolling. Fixed navigation on the left, full-screen photo gallery on the right..."
+        maxlength="10000"
+        aria-describedby="charCounter"
+      ></textarea>
+      <div class="prompt-footer">
+        <span class="char-count" id="charCounter" aria-live="polite">0 / 2000</span>
+        <span class="usage-badge hidden" id="usageBadge" aria-live="polite">
+          <span class="usage-dot" aria-hidden="true"></span>
+          <span id="usageText"></span>
+        </span>
+        <button class="btn-generate" id="btnGenerate" type="button">
+          <span class="btn-text">✦ Generate</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -723,7 +953,15 @@ a:hover{text-decoration:underline}
 (function(){
   'use strict';
 
-  // DOM
+  // ─── ENDPOINTS ───
+  const API_BASE = 'https://n8n.tropus.io/webhook';
+  const ENDPOINTS = {
+    generate: API_BASE + '/generate-website',
+    validate: API_BASE + '/invite-validate',
+    request: API_BASE + '/access-request'
+  };
+
+  // ─── DOM ───
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   const promptInput = document.getElementById('promptInput');
@@ -738,10 +976,239 @@ a:hover{text-decoration:underline}
   const errorToast = document.getElementById('errorToast');
   const steps = document.querySelectorAll('.step');
 
+  // Gate elements
+  const promptWrapper = document.getElementById('promptWrapper');
+  const gateOverlay = document.getElementById('gateOverlay');
+  const exhaustedOverlay = document.getElementById('exhaustedOverlay');
+  const gateTabs = document.querySelectorAll('.gate-tab');
+  const gatePanels = document.querySelectorAll('.gate-panel');
+  const inviteCodeInput = document.getElementById('inviteCodeInput');
+  const btnValidateCode = document.getElementById('btnValidateCode');
+  const codeFeedback = document.getElementById('codeFeedback');
+  const requestEmailInput = document.getElementById('requestEmailInput');
+  const btnRequestAccess = document.getElementById('btnRequestAccess');
+  const requestFeedback = document.getElementById('requestFeedback');
+  const exhaustedEmailInput = document.getElementById('exhaustedEmailInput');
+  const btnExhaustedRequest = document.getElementById('btnExhaustedRequest');
+  const exhaustedFeedback = document.getElementById('exhaustedFeedback');
+  const usageBadge = document.getElementById('usageBadge');
+  const usageText = document.getElementById('usageText');
+
   let generatedCode = '';
   let currentBlobUrl = null;
+  let sessionToken = null;
+  let remainingUses = 0;
 
-  // Hamburger
+  // ─── SESSION HELPERS ───
+  function saveToken(token) {
+    sessionToken = token;
+    try { localStorage.setItem('horizon_token', token); } catch(e) {}
+  }
+  function loadToken() {
+    try { return localStorage.getItem('horizon_token'); } catch(e) { return null; }
+  }
+  function clearToken() {
+    sessionToken = null;
+    try { localStorage.removeItem('horizon_token'); } catch(e) {}
+  }
+
+  // ─── GATE UI ───
+  function unlockPrompt(remaining, maxUses) {
+    remainingUses = remaining;
+    promptWrapper.classList.remove('locked');
+    gateOverlay.classList.add('hidden');
+    exhaustedOverlay.classList.add('hidden');
+    updateUsageBadge(remaining, maxUses);
+  }
+
+  function lockPrompt() {
+    promptWrapper.classList.add('locked');
+    gateOverlay.classList.remove('hidden');
+    exhaustedOverlay.classList.add('hidden');
+    usageBadge.classList.add('hidden');
+    resetGateFeedback();
+  }
+
+  function showExhausted() {
+    promptWrapper.classList.add('locked');
+    gateOverlay.classList.add('hidden');
+    exhaustedOverlay.classList.remove('hidden');
+    usageBadge.classList.add('hidden');
+    clearToken();
+  }
+
+  let lastMaxUses = 0;
+
+  function updateUsageBadge(remaining, maxUses) {
+    if (typeof remaining !== 'number') return;
+    if (maxUses != null) lastMaxUses = maxUses;
+    const display = lastMaxUses || '?';
+    usageText.textContent = remaining + ' / ' + display + ' generations left';
+    usageBadge.classList.remove('hidden', 'warning', 'depleted');
+    if (remaining <= 0) {
+      usageBadge.classList.add('depleted');
+    } else if (remaining === 1) {
+      usageBadge.classList.add('warning');
+    }
+  }
+
+  function resetGateFeedback() {
+    [codeFeedback, requestFeedback, exhaustedFeedback].forEach(el => {
+      el.className = 'gate-msg';
+      el.textContent = '';
+    });
+  }
+
+  function showFeedback(el, msg, type) {
+    el.className = 'gate-msg ' + type;
+    el.textContent = msg;
+  }
+
+  function setLoading(btn, loading) {
+    if (loading) { btn.classList.add('loading'); btn.disabled = true; }
+    else { btn.classList.remove('loading'); btn.disabled = false; }
+  }
+
+  // ─── GATE TABS ───
+  gateTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const panel = tab.dataset.panel;
+      gateTabs.forEach(t => t.classList.remove('active'));
+      gatePanels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(panel === 'code' ? 'panelCode' : 'panelRequest').classList.add('active');
+      resetGateFeedback();
+    });
+  });
+
+  // ─── VALIDATE INVITE CODE ───
+  btnValidateCode.addEventListener('click', async () => {
+    const code = inviteCodeInput.value.trim().toUpperCase();
+    if (!code) {
+      showFeedback(codeFeedback, 'Please enter your invite code.', 'error');
+      inviteCodeInput.focus();
+      return;
+    }
+    setLoading(btnValidateCode, true);
+    resetGateFeedback();
+    try {
+      const res = await fetch(ENDPOINTS.validate, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ invite_code: code })
+      });
+      const data = await res.json();
+      if (res.ok && data.token) {
+        saveToken(data.token);
+        showFeedback(codeFeedback, 'Access granted!', 'success');
+        setTimeout(() => unlockPrompt(data.remaining_uses, data.max_uses), 600);
+      } else {
+        showFeedback(codeFeedback, data.message || 'Invalid invite code.', 'error');
+      }
+    } catch (err) {
+      showFeedback(codeFeedback, 'Connection error. Please try again.', 'error');
+    } finally {
+      setLoading(btnValidateCode, false);
+    }
+  });
+
+  // Enter key for invite code
+  inviteCodeInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); btnValidateCode.click(); }
+  });
+
+  // ─── REQUEST ACCESS (both forms) ───
+  async function handleAccessRequest(emailInput, btn, feedbackEl) {
+    const email = emailInput.value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      showFeedback(feedbackEl, 'Please enter a valid email address.', 'error');
+      emailInput.focus();
+      return;
+    }
+    setLoading(btn, true);
+    try {
+      const res = await fetch(ENDPOINTS.request, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        showFeedback(feedbackEl, 'Request received! Check your email for an invite code.', 'success');
+        emailInput.value = '';
+      } else {
+        showFeedback(feedbackEl, data.message || 'Something went wrong.', 'error');
+      }
+    } catch (err) {
+      showFeedback(feedbackEl, 'Connection error. Please try again.', 'error');
+    } finally {
+      setLoading(btn, false);
+    }
+  }
+
+  btnRequestAccess.addEventListener('click', () => {
+    handleAccessRequest(requestEmailInput, btnRequestAccess, requestFeedback);
+  });
+  requestEmailInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); btnRequestAccess.click(); }
+  });
+
+  btnExhaustedRequest.addEventListener('click', () => {
+    handleAccessRequest(exhaustedEmailInput, btnExhaustedRequest, exhaustedFeedback);
+  });
+  exhaustedEmailInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); btnExhaustedRequest.click(); }
+  });
+
+  // ─── SESSION CHECK ON LOAD ───
+  async function checkSession() {
+    const token = loadToken();
+    if (!token) { lockPrompt(); return; }
+    sessionToken = token;
+    try {
+      const res = await fetch(ENDPOINTS.validate, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: token })
+      });
+      const data = await res.json();
+      if (res.ok && typeof data.remaining_uses === 'number' && data.remaining_uses > 0) {
+        unlockPrompt(data.remaining_uses, data.max_uses);
+      } else if (res.ok && typeof data.remaining_uses === 'number' && data.remaining_uses <= 0) {
+        showExhausted();
+      } else {
+        clearToken();
+        lockPrompt();
+      }
+    } catch (err) {
+      // Offline? Keep locked
+      clearToken();
+      lockPrompt();
+    }
+  }
+  checkSession();
+
+  // ─── REFRESH USAGE AFTER GENERATE ───
+  async function refreshUsage() {
+    if (!sessionToken) return;
+    try {
+      const res = await fetch(ENDPOINTS.validate, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: sessionToken })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        remainingUses = data.remaining_uses;
+        updateUsageBadge(data.remaining_uses, data.max_uses);
+        if (data.remaining_uses <= 0) {
+          showExhausted();
+        }
+      }
+    } catch(e) {}
+  }
+
+  // ─── HAMBURGER ───
   hamburger.addEventListener('click', () => {
     const open = navLinks.classList.toggle('open');
     hamburger.classList.toggle('active');
@@ -757,12 +1224,12 @@ a:hover{text-decoration:underline}
     });
   });
 
-  // Char counter
+  // ─── CHAR COUNTER ───
   promptInput.addEventListener('input', () => {
     charCounter.textContent = promptInput.value.length + ' / 2000';
   });
 
-  // Fade in observer
+  // ─── FADE IN OBSERVER ───
   const fadeEls = document.querySelectorAll('.fade-in');
   const fadeObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -774,7 +1241,7 @@ a:hover{text-decoration:underline}
   }, { threshold: 0.15 });
   fadeEls.forEach(el => fadeObs.observe(el));
 
-  // Stepper
+  // ─── STEPPER ───
   function setStep(index) {
     steps.forEach((step, i) => {
       step.classList.remove('active', 'completed');
@@ -786,7 +1253,7 @@ a:hover{text-decoration:underline}
     steps.forEach(s => s.classList.remove('active', 'completed'));
   }
 
-  // Error
+  // ─── ERROR TOAST ───
   let errorTimeout;
   function showError(msg) {
     errorToast.textContent = msg;
@@ -795,8 +1262,19 @@ a:hover{text-decoration:underline}
     errorTimeout = setTimeout(() => errorToast.classList.remove('visible'), 5000);
   }
 
-  // Generate
+  // ─── GENERATE ───
   btnGenerate.addEventListener('click', async () => {
+    // Frontend guard: check token
+    if (!sessionToken) {
+      lockPrompt();
+      showError('Please enter your invite code first.');
+      return;
+    }
+    if (remainingUses <= 0) {
+      showExhausted();
+      return;
+    }
+
     const prompt = promptInput.value.trim();
     if (!prompt) {
       showError('Please write a description of your website.');
@@ -825,13 +1303,26 @@ a:hover{text-decoration:underline}
     stepTimers.push(setTimeout(() => setStep(2), 6000));
 
     try {
-      const response = await fetch('https://n8n.tropus.io/webhook/generate-website', {
+      const response = await fetch(ENDPOINTS.generate, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({ prompt: prompt, token: sessionToken })
       });
 
-      if (!response.ok) throw new Error('Server error: ' + response.status);
+      if (!response.ok) {
+        // Try to parse error message from backend
+        let errorMsg = 'Server error: ' + response.status;
+        try {
+          const errData = await response.json();
+          if (errData.message) errorMsg = errData.message;
+        } catch(e) {}
+        // If unauthorized or forbidden, reset session
+        if (response.status === 401 || response.status === 403) {
+          clearToken();
+          lockPrompt();
+        }
+        throw new Error(errorMsg);
+      }
 
       const data = await response.json();
 
@@ -861,6 +1352,17 @@ a:hover{text-decoration:underline}
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 400);
 
+      // Refresh usage after successful generation
+      // Decrement locally first (backend may not have incremented used_count yet)
+      remainingUses = Math.max(0, remainingUses - 1);
+      updateUsageBadge(remainingUses, null);
+      if (remainingUses <= 0) {
+        showExhausted();
+        return;
+      }
+      // Then try to sync with backend (may still return old value if backend doesn't track)
+      await refreshUsage();
+
     } catch (err) {
       stepTimers.forEach(clearTimeout);
       resetStepper();
@@ -872,7 +1374,7 @@ a:hover{text-decoration:underline}
     }
   });
 
-  // Copy
+  // ─── COPY ───
   btnCopy.addEventListener('click', async () => {
     if (!generatedCode) return;
     try {
@@ -885,7 +1387,7 @@ a:hover{text-decoration:underline}
     }
   });
 
-  // Download
+  // ─── DOWNLOAD ───
   btnDownload.addEventListener('click', () => {
     if (!generatedCode) return;
     const blob = new Blob([generatedCode], { type: 'text/html' });
@@ -899,7 +1401,7 @@ a:hover{text-decoration:underline}
     URL.revokeObjectURL(url);
   });
 
-  // Keyboard: Enter in textarea with Ctrl/Cmd
+  // ─── KEYBOARD SHORTCUT ───
   promptInput.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       e.preventDefault();
@@ -907,6 +1409,7 @@ a:hover{text-decoration:underline}
     }
   });
 
+  // ─── NAV VISIBILITY ───
   function handleNavVisibility() {
     if (window.innerWidth >= 1024) {
       navLinks.removeAttribute('aria-hidden');

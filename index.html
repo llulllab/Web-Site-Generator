@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Llull Lab Web App Hub — Describe Your Dream Site, We Build It</title>
+<title>Feix — Combinatorial Design Machine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -702,13 +702,13 @@ a:hover{text-decoration:underline}
 <!-- NAV -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-logo">
-    <div class="logo-icon" aria-hidden="true"><img src="logo.jpg" alt="Llull Lab logo"></div>
-    <span>Llull Lab Web App Hub</span>
+    <div class="logo-icon" aria-hidden="true"><img src="logo.jpg" alt="Feix logo"></div>
+    <span>Feix</span>
   </div>
   <ul class="nav-links" id="navLinks" role="list" aria-hidden="true">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#create">Create</a></li>
-    <li><a href="#create" class="nav-cta">Get Started</a></li>
+    <li><a href="#features">How it works</a></li>
+    <li><a href="#create">Design</a></li>
+    <li><a href="#create" class="nav-cta">Start Generating</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -720,48 +720,48 @@ a:hover{text-decoration:underline}
   <div class="hero-orb" aria-hidden="true"></div>
   <div class="hero-badge">
     <span class="hero-badge-dot" aria-hidden="true"></span>
-    AI-powered • Dual-agent architecture
+    Formal generation · Combinatorial logic
   </div>
   <h1>
-    Describe your dream site,<br>
-    <span class="gradient-text">we build it.</span>
+    Web-based combinatorial<br>
+    <span class="gradient-text">design through formal generation.</span>
   </h1>
   <p class="hero-desc">
-    Describe your website in a few sentences. The generator agent writes your code, the reviewer agent checks the quality. A professional site in your hands within minutes.
+    Feix is a combinatorial design machine. Define your parameters, set your constraints — the engine exhaustively explores the formal space and surfaces every valid configuration.
   </p>
-  <a href="#create" class="hero-cta" aria-label="Go to creation area">
-    Start creating
+  <a href="#create" class="hero-cta" aria-label="Go to design area">
+    Start generating
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
   </a>
 </header>
 
 <!-- FEATURES -->
 <section class="features-section fade-in" id="features" aria-labelledby="features-title">
-  <span class="section-label">Why Llull Lab Web App Hub?</span>
-  <h2 id="features-title">Two agents, one result:<br>flawless websites.</h2>
+  <span class="section-label">How Feix works</span>
+  <h2 id="features-title">Formal rules.<br>Infinite combinations.</h2>
   <div class="features-grid">
     <article class="feature-card">
-      <div class="feature-icon blue" aria-hidden="true">🧠</div>
-      <h3>Generator Agent</h3>
-      <p>The AI understands your description and produces modern, responsive HTML/CSS/JS code. It knows design principles and ensures accessibility.</p>
+      <div class="feature-icon blue" aria-hidden="true">⚙️</div>
+      <h3>Define Parameters</h3>
+      <p>Specify your design elements, variables, and constraints. Feix maps the full combinatorial space from your formal input.</p>
     </article>
     <article class="feature-card">
-      <div class="feature-icon amber" aria-hidden="true">🔍</div>
-      <h3>Reviewer Agent</h3>
-      <p>A second AI reviews the generated code: performance, accessibility, visual consistency. It produces a detailed report.</p>
+      <div class="feature-icon amber" aria-hidden="true">🔢</div>
+      <h3>Formal Generation</h3>
+      <p>The engine applies combinatorial logic to systematically enumerate configurations — no randomness, no repetition. Pure formal derivation.</p>
     </article>
     <article class="feature-card">
-      <div class="feature-icon green" aria-hidden="true">⚡</div>
-      <h3>Results in 4-7 Minutes</h3>
-      <p>Live preview, quality report, and downloadable HTML file within minutes. Copy, paste, publish.</p>
+      <div class="feature-icon green" aria-hidden="true">✦</div>
+      <h3>Every Valid Design</h3>
+      <p>Browse, filter, and export the complete set of valid outputs. Every combination that satisfies your constraints, nothing more, nothing less.</p>
     </article>
   </div>
 </section>
 
 <!-- PROMPT -->
 <section class="prompt-section fade-in" id="create" aria-labelledby="create-title">
-  <span class="section-label">Create</span>
-  <h2 id="create-title">Describe your site<br>in a few sentences.</h2>
+  <span class="section-label">Generate</span>
+  <h2 id="create-title">Set your parameters<br>and run the machine.</h2>
   <div class="prompt-card-wrapper locked" id="promptWrapper">
 
     <!-- GATE OVERLAY -->
@@ -813,8 +813,8 @@ a:hover{text-decoration:underline}
     <div class="exhausted-overlay hidden" id="exhaustedOverlay">
       <div class="exhausted-box">
         <div class="exhausted-icon" aria-hidden="true">⏳</div>
-        <h3>No generations left</h3>
-        <p>You've used all your available generations. Request a new invite code to continue creating.</p>
+        <h3>No generations remaining</h3>
+        <p>You've exhausted your available generation runs. Request a new invite code to continue.</p>
         <input
           class="gate-input"
           id="exhaustedEmailInput"
@@ -834,11 +834,11 @@ a:hover{text-decoration:underline}
 
     <!-- ORIGINAL PROMPT CARD -->
     <div class="prompt-card">
-      <label for="promptInput">What kind of website do you envision?</label>
+      <label for="promptInput">Describe your design parameters and constraints.</label>
       <textarea
         class="prompt-textarea"
         id="promptInput"
-        placeholder="Example: A minimalist photography portfolio. Dark theme, large images, horizontal scrolling. Fixed navigation on the left, full-screen photo gallery on the right..."
+        placeholder="Example: A typographic grid system with 3 weights (light, regular, bold), 4 sizes (12px, 16px, 24px, 48px), and 2 alignments (left, center). Generate all valid combinations where size ≥ 24px must use bold or regular weight only..."
         maxlength="10000"
         aria-describedby="charCounter"
       ></textarea>
@@ -849,7 +849,7 @@ a:hover{text-decoration:underline}
           <span id="usageText"></span>
         </span>
         <button class="btn-generate" id="btnGenerate" type="button">
-          <span class="btn-text">✦ Generate</span>
+          <span class="btn-text">✦ Run Machine</span>
           <span class="spinner" aria-hidden="true"></span>
         </button>
       </div>
@@ -867,8 +867,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Sending Request</h3>
-        <p>Your description is being securely transmitted to the server.</p>
+        <h3>Transmitting Parameters</h3>
+        <p>Your design constraints are being securely sent to the Feix engine.</p>
       </div>
     </div>
     <div class="step" data-step="1" role="listitem">
@@ -877,8 +877,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Generator Agent Working</h3>
-        <p>The AI is analyzing your description and writing the code.</p>
+        <h3>Mapping the Combinatorial Space</h3>
+        <p>The engine is parsing your parameters and building the formal possibility space.</p>
       </div>
     </div>
     <div class="step" data-step="2" role="listitem">
@@ -887,8 +887,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Reviewer Agent Inspecting</h3>
-        <p>The second agent is reviewing the code for quality, accessibility, and performance.</p>
+        <h3>Applying Constraints &amp; Generating</h3>
+        <p>Valid configurations are being derived and filtered against your defined constraints.</p>
       </div>
     </div>
     <div class="step" data-step="3" role="listitem">
@@ -897,8 +897,8 @@ a:hover{text-decoration:underline}
         <div class="step-line"></div>
       </div>
       <div class="step-content">
-        <h3>Result Ready</h3>
-        <p>Your site has been created! Preview and report are below.</p>
+        <h3>Output Ready</h3>
+        <p>Your combinatorial design set is complete. Preview and export below.</p>
       </div>
     </div>
   </div>
@@ -906,13 +906,13 @@ a:hover{text-decoration:underline}
 
 <!-- RESULTS -->
 <section class="results-section" id="resultsSection" aria-labelledby="results-title">
-  <h2 id="results-title" class="section-label" style="margin-bottom:var(--space-xl)">Results</h2>
+  <h2 id="results-title" class="section-label" style="margin-bottom:var(--space-xl)">Output</h2>
   <div class="results-grid">
     <!-- Report -->
     <div class="report-card">
       <div class="report-card-header">
-        <div class="report-card-icon" aria-hidden="true">📋</div>
-        <h3>Quality Control Report</h3>
+        <div class="report-card-icon" aria-hidden="true">📐</div>
+        <h3>Generation Report</h3>
       </div>
       <div class="report-body" id="reportBody">—</div>
     </div>
@@ -923,7 +923,7 @@ a:hover{text-decoration:underline}
           <span class="preview-dot" aria-hidden="true"></span>
           <span class="preview-dot" aria-hidden="true"></span>
           <span class="preview-dot" aria-hidden="true"></span>
-          <span class="preview-toolbar-title">Live Preview</span>
+          <span class="preview-toolbar-title">Design Preview</span>
         </div>
         <div class="preview-actions">
           <button class="btn-action" id="btnCopy" type="button" aria-label="Copy code">
@@ -932,11 +932,11 @@ a:hover{text-decoration:underline}
           </button>
           <button class="btn-action" id="btnDownload" type="button" aria-label="Download as HTML">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download
+            Export
           </button>
         </div>
       </div>
-      <iframe class="preview-iframe" id="previewIframe" title="Preview of the generated site" sandbox="allow-scripts"></iframe>
+      <iframe class="preview-iframe" id="previewIframe" title="Preview of the generated design" sandbox="allow-scripts"></iframe>
     </div>
   </div>
 </section>
@@ -946,7 +946,7 @@ a:hover{text-decoration:underline}
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <p>© 2026 <a href="https://llulllab.com" target="_blank" rel="noopener">Llull Lab</a></p>
+  <p>© 2026 <a href="https://llulllab.com" target="_blank" rel="noopener">Llull Lab</a> · Feix</p>
 </footer>
 
 <script>
@@ -1043,7 +1043,7 @@ a:hover{text-decoration:underline}
     if (typeof remaining !== 'number') return;
     if (maxUses != null) lastMaxUses = maxUses;
     const display = lastMaxUses || '?';
-    usageText.textContent = remaining + ' / ' + display + ' generations left';
+    usageText.textContent = remaining + ' / ' + display + ' runs left';
     usageBadge.classList.remove('hidden', 'warning', 'depleted');
     if (remaining <= 0) {
       usageBadge.classList.add('depleted');
@@ -1112,12 +1112,11 @@ a:hover{text-decoration:underline}
     }
   });
 
-  // Enter key for invite code
   inviteCodeInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); btnValidateCode.click(); }
   });
 
-  // ─── REQUEST ACCESS (both forms) ───
+  // ─── REQUEST ACCESS ───
   async function handleAccessRequest(emailInput, btn, feedbackEl) {
     const email = emailInput.value.trim();
     if (!email || !email.includes('@') || !email.includes('.')) {
@@ -1181,7 +1180,6 @@ a:hover{text-decoration:underline}
         lockPrompt();
       }
     } catch (err) {
-      // Offline? Keep locked
       clearToken();
       lockPrompt();
     }
@@ -1264,7 +1262,6 @@ a:hover{text-decoration:underline}
 
   // ─── GENERATE ───
   btnGenerate.addEventListener('click', async () => {
-    // Frontend guard: check token
     if (!sessionToken) {
       lockPrompt();
       showError('Please enter your invite code first.');
@@ -1277,7 +1274,7 @@ a:hover{text-decoration:underline}
 
     const prompt = promptInput.value.trim();
     if (!prompt) {
-      showError('Please write a description of your website.');
+      showError('Please describe your design parameters.');
       promptInput.focus();
       return;
     }
@@ -1287,7 +1284,6 @@ a:hover{text-decoration:underline}
       return;
     }
 
-    // UI state
     btnGenerate.classList.add('loading');
     btnGenerate.disabled = true;
     resultsSection.classList.remove('visible');
@@ -1296,7 +1292,6 @@ a:hover{text-decoration:underline}
 
     resetStepper();
 
-    // Start step simulation
     setStep(0);
     const stepTimers = [];
     stepTimers.push(setTimeout(() => setStep(1), 1200));
@@ -1310,13 +1305,11 @@ a:hover{text-decoration:underline}
       });
 
       if (!response.ok) {
-        // Try to parse error message from backend
         let errorMsg = 'Server error: ' + response.status;
         try {
           const errData = await response.json();
           if (errData.message) errorMsg = errData.message;
         } catch(e) {}
-        // If unauthorized or forbidden, reset session
         if (response.status === 401 || response.status === 403) {
           clearToken();
           lockPrompt();
@@ -1326,7 +1319,6 @@ a:hover{text-decoration:underline}
 
       const data = await response.json();
 
-      // Clear pending timers and jump to final
       stepTimers.forEach(clearTimeout);
       setStep(2);
       await new Promise(r => setTimeout(r, 800));
@@ -1334,7 +1326,6 @@ a:hover{text-decoration:underline}
       steps[3].classList.remove('active');
       steps[3].classList.add('completed');
 
-      // Show results
       generatedCode = data.code || '';
       reportBody.textContent = data.report || 'No report found.';
 
@@ -1352,15 +1343,12 @@ a:hover{text-decoration:underline}
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 400);
 
-      // Refresh usage after successful generation
-      // Decrement locally first (backend may not have incremented used_count yet)
       remainingUses = Math.max(0, remainingUses - 1);
       updateUsageBadge(remainingUses, null);
       if (remainingUses <= 0) {
         showExhausted();
         return;
       }
-      // Then try to sync with backend (may still return old value if backend doesn't track)
       await refreshUsage();
 
     } catch (err) {
@@ -1394,7 +1382,7 @@ a:hover{text-decoration:underline}
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'llulllab-output.html';
+    a.download = 'feix-output.html';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
